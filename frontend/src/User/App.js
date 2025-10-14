@@ -29,7 +29,7 @@ function Signin() {
           "Confirm password must match the password");
     } else {
       setLoad(false);
-      axios.post("http://localhost:3001/sign", inp)
+      axios.post(`${process.env.REACT_APP_API_URL}/sign`, inp)
         .then(res => {
           setLoad(true);
           if (res.data.message.toLowerCase().includes("success")) {
