@@ -24,7 +24,7 @@ function Login() {
             setMis(inp.name?.length < 4 ? "Invalid Username" : "Invalid Password")
         } else {
             setLoad(false);
-            axios.post("http://localhost:3001/log", inp)
+            axios.post(`${process.env.REACT_APP_API_URL}/log`, inp)
                 .then(res => {
                     setLoad(true);
                     if (res.data.message.toLowerCase().includes("success")) {
