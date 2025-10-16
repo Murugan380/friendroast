@@ -11,7 +11,7 @@ route.post('/sign',async(req,res)=>{
             return res.status(400).send({message:error.details[0].message})
         }
     try{
-        const name=req.body.name.toLowerCase();
+        const name=req.body.name
         const already=await user.find({name:name});
         if(already.length>0) return res.send({message:"Already Exit Try a different username"});
         const password=await bcrypt.hash(req.body.password,10);
