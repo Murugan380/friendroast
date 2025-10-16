@@ -324,7 +324,7 @@ useEffect(() => {
           <div className="downbox">
             <input
               type="text"
-              placeholder="Type your message..."
+              placeholder="Type your Comedian..."
               onChange={data}
               name="frdname"
               id="msgg"
