@@ -8,7 +8,14 @@ const path=require('path')
 const admin=require("./routes/admin/admin")
 require('dotenv').config(); 
 const app=express();
-app.use(cors());
+const corsOptions = {
+  origin: 'https://friendroast.vercel.app', // your frontend URL
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true, // if you need cookies or auth headers
+};
+
+app.use(cors(corsOptions));
 app.use(express.json())
 run();
 async function run(){
