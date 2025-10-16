@@ -17,16 +17,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json())
-run();
-async function run(){
-    try{
-    await mongoose.connect(process.env.URL)
-    console.log("Connected")
-    }
-    catch(err){
-        console.log(err)
-    }
-}
 app.use(sigin);
 app.use(login);
 app.use(fileup);
@@ -35,6 +25,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'ProfileIMG')));
 app.use((req,res)=>{
     res.status(404).send({message:"invalid route"})
 })
-app.listen(process.env.PORT,()=>{
+async function run(){
+    try{
+    await mongoose.connect(process.env.URL)
+    console.log("Connected");
+      app.listen(process.env.PORT,()=>{
     console.log(`Run in ${process.env.PORT}`)
 })
+
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+run();
