@@ -216,6 +216,28 @@ useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   }
 }, [userdata2,userdata]);
+
+  useEffect(() => {
+  function handleClickOutside(event) {
+    const leftPanel = document.querySelector(".left-panel");
+    const toggleBtn = document.querySelector(".toggle-history-btn");
+
+    // Apply only on mobile view (screen width ≤ 768px)
+    if (
+      window.innerWidth <= 768 && 
+      showHistory &&
+      leftPanel &&
+      !leftPanel.contains(event.target) &&
+      (!toggleBtn || !toggleBtn.contains(event.target))
+    ) {
+      setShowHistory(false);
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, [showHistory]);
+
   return (
     <div className="chat-app">
       {/* Left Panel */}
