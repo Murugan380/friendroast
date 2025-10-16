@@ -148,7 +148,13 @@ axios.post(`${process.env.REACT_APP_API_URL}/getuserd`, {}, {
         acc[date].push(message);
         return acc;
       }, {});
-      setGroupedMessages(grouped);
+      const sortedGrouped = Object.keys(grouped)
+  .sort((a, b) => new Date(b) - new Date(a))
+  .reduce((acc, date) => {
+    acc[date] = grouped[date];
+    return acc;
+  }, {});
+      setGroupedMessages(sortedGrouped);
 
       // Today’s messages
       const today = new Date().toISOString().split('T')[0];
